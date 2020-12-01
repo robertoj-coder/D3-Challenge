@@ -105,19 +105,15 @@ function yScale(censusData, chosenYAxis) {
     return stateGroup;
   }
 
-  function symbolX(value, chosenXAxis) {
+  function symbolX(x_value, chosenXAxis) {
 
     //style based on variable
     //poverty
     if (chosenXAxis === 'poverty') {
-        return `${value}%`;
-    }
-    //household income
-    else if (chosenXAxis === 'income') {
-        return `${value}`;
+        return `${x_value}%`;
     }
     else {
-      return `${value}`;
+      return `${x_value}`;
     }
 }
   // function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
@@ -199,7 +195,7 @@ function yScale(censusData, chosenYAxis) {
       .attr("class", "tooltip")
       .offset([80, -60])
       .html(function(d) {
-        return (`${d.state}<br>${xlabel} ${d[chosenXAxis]}<br>${ylabel}${d[chosenYAxis]}%`);
+        return (`${d.state}<br>${xlabel} ${symbolX(d[chosenXAxis], chosenXAxis)}<br>${ylabel}${d[chosenYAxis]}%`);
       });
   
     circlesGroup.call(toolTip);
